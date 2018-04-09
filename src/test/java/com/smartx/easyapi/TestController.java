@@ -35,7 +35,7 @@ public class TestController {
         log.info(request.getId());
         log.info(String.valueOf(request.getDataParamAsInteger("id")));
         log.info(String.valueOf(request.getUser().getUserId()));
-        return ApiResponse.builder().state(StateCode.SUCCESSFUL).build();
+        return ApiResponse.builder().ok().build();
     }
 
 }
