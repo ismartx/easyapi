@@ -2,7 +2,6 @@ package com.smartx.easyapi;
 
 import com.smartx.easyapi.bean.api.ApiRequest;
 import com.smartx.easyapi.bean.api.ApiResponse;
-import com.smartx.easyapi.bean.api.StateCode;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +30,31 @@ public class TestController {
     }
 
     @RequestMapping(value = "/test-json", method = RequestMethod.POST)
-    public ApiResponse testJson(@RequestBody  ApiRequest request) {
+    public ApiResponse testJson(@RequestBody ApiRequest request) {
         log.info(request.getId());
         log.info(String.valueOf(request.getDataParamAsInteger("id")));
         log.info(String.valueOf(request.getUser().getUserId()));
-        return ApiResponse.builder().ok().build();
+        Bean bean = new Bean();
+        bean.setName("kext2");
+        try {
+            return ApiResponse.builder()
+                    .ok()
+                    .addValueToData("name", "kext")
+                    .addObjectToData(bean)
+                    //.addObjectToData(bean, false)
+                    //.addObjectToData(bean, true, false)
+                    .build();
+            /*
+            ApiResponse response = new ApiResponse();
+            response.setState(StateCode.SUCCESSFUL);
+            return response
+                    .addValueToData("name", "kext")
+                    .addObjectToData(bean);
+                    */
+        } catch (Exception e) {
+            log.error("Exception", e);
+            return ApiResponse.builder().error().build();
+        }
     }
 
 }

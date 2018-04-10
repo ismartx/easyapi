@@ -13,6 +13,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -48,5 +50,7 @@ public class ApiTest {
         ApiResponse apiResponse = JsonUtil.json2Object(response, ApiResponse.class);
         assertThat(apiResponse.getId()).isEqualTo("fe0082bb-03be-400f-aa1a-ba49dd8caf27");
         assertThat(apiResponse.getState().getCode()).isEqualTo(0);
+        assertThat(apiResponse.getData().get("name")).isEqualTo("kext");
+        assertThat(((Map) apiResponse.getData().get("bean")).get("name")).isEqualTo("kext2");
     }
 }
