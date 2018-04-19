@@ -16,6 +16,7 @@ import lombok.Data;
 @Data
 public class Client implements Serializable {
 
+    private static final long serialVersionUID = -7333072327106470695L;
     private String source;
 
     private String ver;

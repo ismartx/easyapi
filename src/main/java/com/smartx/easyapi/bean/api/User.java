@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -231027225368206064L;
     private Integer userId;
 
     private String sessionId;

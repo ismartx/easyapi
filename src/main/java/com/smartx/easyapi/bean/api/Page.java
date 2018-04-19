@@ -16,6 +16,7 @@ import lombok.Data;
 @Data
 public class Page implements Serializable {
 
+    private static final long serialVersionUID = 1711652616692842368L;
     private Integer page;
 
     private Integer size;

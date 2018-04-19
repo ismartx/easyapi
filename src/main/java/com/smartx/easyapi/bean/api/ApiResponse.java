@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse implements Serializable {
 
+    private static final long serialVersionUID = -832472078245067047L;
     private String id;
 
     private State state;

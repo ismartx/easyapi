@@ -17,6 +17,7 @@ import lombok.Data;
 @Data
 public class ApiRequest implements Serializable {
 
+    private static final long serialVersionUID = -5072605662352878957L;
     private String id;
 
     private String sign;
