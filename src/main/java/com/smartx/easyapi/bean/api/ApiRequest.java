@@ -21,6 +21,10 @@ public class ApiRequest implements Serializable {
 
     private String sign;
 
+    private Long timestamp;
+
+    private Client client;
+
     private Map<String, Object> data;
 
     private Page page;
