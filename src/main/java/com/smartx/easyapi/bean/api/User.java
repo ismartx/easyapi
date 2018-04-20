@@ -26,7 +26,13 @@ public class User implements Serializable {
 
     private String sessionId;
 
+    private Integer expires;
+
     public static User newUser(Integer userId) {
-        return new User(userId, UUID.randomUUID().toString().replace("-", ""));
+        return newUser(userId, -1);
+    }
+
+    public static User newUser(Integer userId, Integer expires) {
+        return new User(userId, UUID.randomUUID().toString().replace("-", ""), expires);
     }
 }
