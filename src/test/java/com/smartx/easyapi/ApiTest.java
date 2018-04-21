@@ -41,7 +41,7 @@ public class ApiTest {
 
     @Test
     public void testJson() throws Exception {
-        String request = "{\"id\":\"fe0082bb-03be-400f-aa1a-ba49dd8caf27\", \"data\":{\"id\":1}, \"user\":{\"userId\":123123}}}";
+        String request = "{\"id\":\"fe0082bb-03be-400f-aa1a-ba49dd8caf27\", \"timestamp\":123456, \"sign\":\"d3eeac030296b969c598ce736240a2cb\", \"data\":{\"id\":1}, \"user\":{\"userId\":123123}}}";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(request, headers);

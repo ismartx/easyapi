@@ -1,6 +1,7 @@
 package com.smartx.easyapi;
 
 import com.smartx.easyapi.filter.LogFilter;
+import com.smartx.easyapi.interceptor.RequestInterceptor;
 import com.smartx.easyapi.interceptor.TimeInterceptor;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -26,6 +27,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(timeInterceptor());
+        registry.addInterceptor(requestInterceptor());
     }
 
     @Bean
@@ -45,5 +47,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public TimeInterceptor timeInterceptor() {
         return new TimeInterceptor();
+    }
+
+    @Bean
+    public RequestInterceptor requestInterceptor() {
+        return new RequestInterceptor();
     }
 }
