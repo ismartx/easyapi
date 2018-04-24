@@ -1,5 +1,8 @@
 package com.smartx.easyapi.bean.api;
 
+import com.smartx.easyapi.util.JsonUtil;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -45,5 +48,17 @@ public class ApiRequest implements Serializable {
             return null;
         }
         return this.data.get(key);
+    }
+
+    public <T> T getDataAsObject(String key, Class<T> clazz) {
+        String str = this.getDataParamAsString(key);
+        if (null == str) {
+            return null;
+        }
+        try {
+            return JsonUtil.json2Object(str, clazz);
+        } catch (IOException e) {
+            return null;
+        }
     }
 }
