@@ -37,11 +37,14 @@ public class ApiResponse implements Serializable {
 
     private Page page;
 
+    private User user;
+
     public static class ApiResponseBuilder {
         private String id;
         private State state;
         private Map<String, Object> data;
         private Page page;
+        private User user;
 
         ApiResponseBuilder() {
         }
@@ -53,6 +56,11 @@ public class ApiResponse implements Serializable {
 
         public ApiResponse.ApiResponseBuilder state(State state) {
             this.state = state;
+            return this;
+        }
+
+        public ApiResponse.ApiResponseBuilder user(User user) {
+            this.user = user;
             return this;
         }
 
@@ -112,7 +120,7 @@ public class ApiResponse implements Serializable {
         }
 
         public ApiResponse build() {
-            return new ApiResponse(this.id, this.state, this.data, this.page);
+            return new ApiResponse(this.id, this.state, this.data, this.page, this.user);
         }
 
         @Override
