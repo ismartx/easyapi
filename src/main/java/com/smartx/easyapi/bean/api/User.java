@@ -35,6 +35,10 @@ public class User implements Serializable {
     }
 
     public static User newUser(Integer userId, Integer expires) {
-        return new User(userId, UUID.randomUUID().toString().replace("-", ""), expires);
+        return new User(userId, generateSid(), expires);
+    }
+
+    public static String generateSid() {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 }
