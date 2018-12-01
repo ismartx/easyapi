@@ -61,4 +61,13 @@ public class ApiRequest implements Serializable {
             return null;
         }
     }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getDataParamAsType(String name, Class<T> clazz) {
+        Object o = this.getDataParam(name);
+        if (clazz.isInstance(o)) {
+            return (T) o;
+        }
+        return null;
+    }
 }

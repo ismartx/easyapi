@@ -3,10 +3,13 @@ package com.smartx.easyapi;
 import com.smartx.easyapi.bean.api.ApiRequest;
 import com.smartx.easyapi.bean.api.ApiResponse;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +32,7 @@ public class TestController {
         return "Hello";
     }
 
-    @RequestMapping(value = "/test-json", method = RequestMethod.POST)
+    @PostMapping(value = "/test-json")
     public ApiResponse testJson(@RequestBody ApiRequest request) {
         log.info(request.getId());
         log.info(String.valueOf(request.getDataParamAsInteger("id")));
@@ -55,6 +58,19 @@ public class TestController {
             log.error("Exception", e);
             return ApiResponse.builder().error().build();
         }
+    }
+
+    @PostMapping(value = "/test-json-list")
+    public ApiResponse testJsonList(@RequestBody ApiRequest request) {
+        List<String> images = request.getDataParamAsType("images", List.class);
+        Double lng = request.getDataParamAsType("lng", Double.class);
+        Double lat = request.getDataParamAsType("lat", Double.class);
+        return ApiResponse.builder()
+                .ok()
+                .addValueToData("size", String.valueOf(images.size()))
+                .addValueToData("lng", lng)
+                .addValueToData("lat", lat)
+                .build();
     }
 
 }

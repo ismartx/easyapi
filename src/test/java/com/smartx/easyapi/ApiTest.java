@@ -53,4 +53,17 @@ public class ApiTest {
         assertThat(apiResponse.getData().get("name")).isEqualTo("kext");
         assertThat(((Map) apiResponse.getData().get("bean")).get("name")).isEqualTo("kext2");
     }
+
+    @Test
+    public void testJsonList() throws Exception {
+        String request = "{\"id\":\"1526374971676004\",\"sign\":\"bb01efbe60bf270ce8d2053307d91182\",\"timestamp\":1526374971676,\"client\":{\"ver\":\"1.0.0\",\"source\":\"MP\"},\"user\":{\"userId\":\"abc\",\"sessionId\":\"b07d01a2f29b4b228a400d2ef4f6cf77\"},\"data\":{\"images\":[\"http://abc.com/1.png\",\"http://abc.com/1.png\"],\"content\":\"\",\"lng\":123.123,\"lat\":123.123}}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(request, headers);
+        String response = this.restTemplate.postForObject("/api/v1/test/test-json-list", entity, String.class);
+        assertThat(response).isNotEqualTo(null);
+        ApiResponse apiResponse = JsonUtil.json2Object(response, ApiResponse.class);
+        assertThat(apiResponse.getState().getCode()).isEqualTo(0);
+        assertThat(apiResponse.getData().get("size")).isEqualTo("2");
+    }
 }
