@@ -43,7 +43,10 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             String signString = String.format(SIGN_FORMAT, apiRequest.getId(), apiConfig.getSecret(), apiRequest.getTimestamp());
             String md5 = Hashing.md5().hashString(signString, Charsets.UTF_8).toString();
             if (!md5.equals(apiRequest.getSign())) {
-                apiResponse = ApiResponse.builder().state(StateCode.REQUEST_ERROR).build();
+                apiResponse = ApiResponse.builder()
+                        .id(apiRequest.getId())
+                        .state(StateCode.SIGN_ERROR)
+                        .build();
             }
         } catch (IOException e) {
             apiResponse = ApiResponse.builder().state(StateCode.REQUEST_ERROR).build();
