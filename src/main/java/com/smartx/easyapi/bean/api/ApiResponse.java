@@ -94,13 +94,13 @@ public class ApiResponse implements Serializable {
             return this;
         }
 
-        public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNull) throws Exception {
-            this._addObjectToData(obj, withNull, true);
+        public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNullField) throws Exception {
+            this._addObjectToData(obj, withNullField, true);
             return this;
         }
 
-        public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNull, boolean withName) throws Exception {
-            this._addObjectToData(obj, withNull, withName);
+        public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
+            this._addObjectToData(obj, withNullField, withName);
             return this;
         }
 
@@ -133,11 +133,11 @@ public class ApiResponse implements Serializable {
             return "ApiResponse.ApiResponseBuilder(id=" + this.id + ", state=" + this.state + ", data=" + this.data + ", page=" + this.page + ")";
         }
 
-        private void _addObjectToData(Object obj, boolean withNull, boolean withName) throws Exception {
+        private void _addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
             if (this.data == null) {
                 this.data = new HashMap<>(16);
             }
-            Map<String, Object> map = this.map(obj, withNull);
+            Map<String, Object> map = this.map(obj, withNullField);
             if (withName) {
                 this.data.put(obj.getClass().getSimpleName().toLowerCase(), map);
             } else {
@@ -145,14 +145,14 @@ public class ApiResponse implements Serializable {
             }
         }
 
-        private Map<String, Object> map(Object obj, boolean withNull) throws Exception {
+        private Map<String, Object> map(Object obj, boolean withNullField) throws Exception {
             Map<String, Object> map = new HashMap<>(16);
             for (Field f : obj.getClass().getDeclaredFields()) {
                 if ("this$0".equals(f.getName()) || "serialVersionUID".equalsIgnoreCase(f.getName())) {
                     continue;
                 }
                 f.setAccessible(true);
-                if (!withNull && f.get(obj) == null) {
+                if (!withNullField && f.get(obj) == null) {
                     continue;
                 }
                 map.put(f.getName(), f.get(obj));
