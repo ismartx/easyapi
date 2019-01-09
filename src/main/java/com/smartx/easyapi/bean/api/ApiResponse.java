@@ -92,17 +92,22 @@ public class ApiResponse implements Serializable {
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(Object obj) throws Exception {
-            this.addObjectToData0(obj, true, true);
+            this.addObjectToData0(null, obj, true, true);
             return this;
         }
 
-        public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNullField) throws Exception {
-            this.addObjectToData0(obj, withNullField, true);
+        public ApiResponse.ApiResponseBuilder addObjectToData(String key, Object obj) throws Exception {
+            this.addObjectToData0(key, obj, true, true);
             return this;
         }
 
-        public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
-            this.addObjectToData0(obj, withNullField, withName);
+        public ApiResponse.ApiResponseBuilder addObjectToData(String key, Object obj, boolean withNullField) throws Exception {
+            this.addObjectToData0(key, obj, withNullField, true);
+            return this;
+        }
+
+        public ApiResponse.ApiResponseBuilder addObjectToData(String key, Object obj, boolean withNullField, boolean withName) throws Exception {
+            this.addObjectToData0(key, obj, withNullField, withName);
             return this;
         }
 
@@ -135,15 +140,19 @@ public class ApiResponse implements Serializable {
             return "ApiResponse.ApiResponseBuilder(id=" + this.id + ", state=" + this.state + ", data=" + this.data + ", page=" + this.page + ")";
         }
 
-        private void addObjectToData0(Object obj, boolean withNullField, boolean withName) throws Exception {
+        private void addObjectToData0(String key, Object obj, boolean withNullField, boolean withName) throws Exception {
             if (this.data == null) {
                 this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
             Map<String, Object> map = this.map(obj, withNullField);
-            if (withName) {
-                this.data.put(obj.getClass().getSimpleName().toLowerCase(), map);
+            if (key != null) {
+                this.data.put(key, map);
             } else {
-                this.data.putAll(map);
+                if (withName) {
+                    this.data.put(obj.getClass().getSimpleName().toLowerCase(), map);
+                } else {
+                    this.data.putAll(map);
+                }
             }
         }
 
@@ -185,17 +194,22 @@ public class ApiResponse implements Serializable {
     }
 
     public ApiResponse addObjectToData(Object obj) throws Exception {
-        this.addObjectToData0(obj, true, true);
+        this.addObjectToData0(null, obj, true, true);
         return this;
     }
 
-    public ApiResponse addObjectToData(Object obj, boolean withNullField) throws Exception {
-        this.addObjectToData0(obj, withNullField, true);
+    public ApiResponse addObjectToData(String key, Object obj) throws Exception {
+        this.addObjectToData0(key, obj, true, true);
         return this;
     }
 
-    public ApiResponse addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
-        this.addObjectToData0(obj, withNullField, withName);
+    public ApiResponse addObjectToData(String key, Object obj, boolean withNullField) throws Exception {
+        this.addObjectToData0(key, obj, withNullField, true);
+        return this;
+    }
+
+    public ApiResponse addObjectToData(String key, Object obj, boolean withNullField, boolean withName) throws Exception {
+        this.addObjectToData0(key, obj, withNullField, withName);
         return this;
     }
 
@@ -214,15 +228,19 @@ public class ApiResponse implements Serializable {
         return this;
     }
 
-    private void addObjectToData0(Object obj, boolean withNullField, boolean withName) throws Exception {
+    private void addObjectToData0(String key, Object obj, boolean withNullField, boolean withName) throws Exception {
         if (this.data == null) {
             this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
         Map<String, Object> map = new ApiResponseBuilder().map(obj, withNullField);
-        if (withName) {
-            this.data.put(obj.getClass().getSimpleName().toLowerCase(), map);
+        if (key != null) {
+            this.data.put(key, map);
         } else {
-            this.data.putAll(map);
+            if (withName) {
+                this.data.put(obj.getClass().getSimpleName().toLowerCase(), map);
+            } else {
+                this.data.putAll(map);
+            }
         }
     }
 
