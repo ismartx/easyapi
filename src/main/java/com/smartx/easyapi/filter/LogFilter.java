@@ -26,9 +26,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LogFilter extends OncePerRequestFilter {
 
-    private static final String LOG_REQUEST = "Request: {}";
+    private static final String LOG_REQUEST = "Api: {}, Request: {}";
 
-    private static final String LOG_RESPONSE = "Response: {}";
+    private static final String LOG_RESPONSE = "Api: {}, Response: {}";
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
@@ -40,8 +40,8 @@ public class LogFilter extends OncePerRequestFilter {
             log.error("Error to filter", e);
         } finally {
             // log request and response
-            log.info(LOG_REQUEST, requestWrapper.getBodyString());
-            log.info(LOG_RESPONSE, responseWrapper.getBodyString());
+            log.info(LOG_REQUEST, httpServletRequest.getRequestURI(), requestWrapper.getBodyString());
+            log.info(LOG_RESPONSE, httpServletRequest.getRequestURI(), responseWrapper.getBodyString());
         }
     }
 }
