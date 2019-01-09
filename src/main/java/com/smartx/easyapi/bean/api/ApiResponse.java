@@ -79,6 +79,11 @@ public class ApiResponse implements Serializable {
             return this;
         }
 
+        public ApiResponse.ApiResponseBuilder signError() {
+            this.state = StateCode.SIGN_ERROR;
+            return this;
+        }
+
         public ApiResponse.ApiResponseBuilder data(Map<String, Object> data) {
             this.data = data;
             return this;
