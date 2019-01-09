@@ -92,32 +92,32 @@ public class ApiResponse implements Serializable {
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(Object obj) throws Exception {
-            this._addObjectToData(obj, true, true);
+            this.addObjectToData0(obj, true, true);
             return this;
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNullField) throws Exception {
-            this._addObjectToData(obj, withNullField, true);
+            this.addObjectToData0(obj, withNullField, true);
             return this;
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
-            this._addObjectToData(obj, withNullField, withName);
+            this.addObjectToData0(obj, withNullField, withName);
             return this;
         }
 
         public ApiResponse.ApiResponseBuilder addValueToData(String key, Object value) {
-            this._addValueToData(key, value);
+            this.addValueToData0(key, value);
             return this;
         }
 
         public <T> ApiResponse.ApiResponseBuilder addListToData(List<T> list) {
-            this._addListToData("dataList", list);
+            this.addListToData0("dataList", list);
             return this;
         }
 
         public <T> ApiResponse.ApiResponseBuilder addListToData(String key, List<T> list) {
-            this._addListToData(key, list);
+            this.addListToData0(key, list);
             return this;
         }
 
@@ -135,7 +135,7 @@ public class ApiResponse implements Serializable {
             return "ApiResponse.ApiResponseBuilder(id=" + this.id + ", state=" + this.state + ", data=" + this.data + ", page=" + this.page + ")";
         }
 
-        private void _addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
+        private void addObjectToData0(Object obj, boolean withNullField, boolean withName) throws Exception {
             if (this.data == null) {
                 this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
@@ -162,14 +162,14 @@ public class ApiResponse implements Serializable {
             return map;
         }
 
-        private void _addValueToData(String key, Object value) {
+        private void addValueToData0(String key, Object value) {
             if (this.data == null) {
                 this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
             this.data.put(key, value);
         }
 
-        private <T> void _addListToData(String key, List<T> list) {
+        private <T> void addListToData0(String key, List<T> list) {
             if (this.data == null) {
                 this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
@@ -185,36 +185,36 @@ public class ApiResponse implements Serializable {
     }
 
     public ApiResponse addObjectToData(Object obj) throws Exception {
-        this._addObjectToData(obj, true, true);
+        this.addObjectToData0(obj, true, true);
         return this;
     }
 
     public ApiResponse addObjectToData(Object obj, boolean withNullField) throws Exception {
-        this._addObjectToData(obj, withNullField, true);
+        this.addObjectToData0(obj, withNullField, true);
         return this;
     }
 
     public ApiResponse addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
-        this._addObjectToData(obj, withNullField, withName);
+        this.addObjectToData0(obj, withNullField, withName);
         return this;
     }
 
     public ApiResponse addValueToData(String key, Object value) {
-        this._addValueToData(key, value);
+        this.addValueToData0(key, value);
         return this;
     }
 
     public <T> ApiResponse addListToData(List<T> list) {
-        this._addListToData("dataList", list);
+        this.addListToData0("dataList", list);
         return this;
     }
 
     public <T> ApiResponse addListToData(String key, List<T> list) {
-        this._addListToData(key, list);
+        this.addListToData0(key, list);
         return this;
     }
 
-    private void _addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
+    private void addObjectToData0(Object obj, boolean withNullField, boolean withName) throws Exception {
         if (this.data == null) {
             this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
@@ -226,14 +226,14 @@ public class ApiResponse implements Serializable {
         }
     }
 
-    private void _addValueToData(String key, Object value) {
+    private void addValueToData0(String key, Object value) {
         if (this.data == null) {
             this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
         this.data.put(key, value);
     }
 
-    private <T> void _addListToData(String key, List<T> list) {
+    private <T> void addListToData0(String key, List<T> list) {
         if (this.data == null) {
             this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
