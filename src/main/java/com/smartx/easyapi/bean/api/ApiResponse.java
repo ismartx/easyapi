@@ -39,6 +39,8 @@ public class ApiResponse implements Serializable {
 
     private User user;
 
+    private static final int COLLECTION_DEFAULT_SIZE = 16;
+
     public static class ApiResponseBuilder {
         private String id;
         private State state;
@@ -135,7 +137,7 @@ public class ApiResponse implements Serializable {
 
         private void _addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
             if (this.data == null) {
-                this.data = new HashMap<>(16);
+                this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
             Map<String, Object> map = this.map(obj, withNullField);
             if (withName) {
@@ -146,7 +148,7 @@ public class ApiResponse implements Serializable {
         }
 
         private Map<String, Object> map(Object obj, boolean withNullField) throws Exception {
-            Map<String, Object> map = new HashMap<>(16);
+            Map<String, Object> map = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             for (Field f : obj.getClass().getDeclaredFields()) {
                 if ("this$0".equals(f.getName()) || "serialVersionUID".equalsIgnoreCase(f.getName())) {
                     continue;
@@ -162,14 +164,14 @@ public class ApiResponse implements Serializable {
 
         private void _addValueToData(String key, Object value) {
             if (this.data == null) {
-                this.data = new HashMap<>(16);
+                this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
             this.data.put(key, value);
         }
 
         private <T> void _addListToData(String key, List<T> list) {
             if (this.data == null) {
-                this.data = new HashMap<>(16);
+                this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
             }
             if (list == null) {
                 list = new ArrayList<>();
@@ -214,7 +216,7 @@ public class ApiResponse implements Serializable {
 
     private void _addObjectToData(Object obj, boolean withNull, boolean withName) throws Exception {
         if (this.data == null) {
-            this.data = new HashMap<>(16);
+            this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
         Map<String, Object> map = new ApiResponseBuilder().map(obj, withNull);
         if (withName) {
@@ -226,14 +228,14 @@ public class ApiResponse implements Serializable {
 
     private void _addValueToData(String key, Object value) {
         if (this.data == null) {
-            this.data = new HashMap<>(16);
+            this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
         this.data.put(key, value);
     }
 
     private <T> void _addListToData(String key, List<T> list) {
         if (this.data == null) {
-            this.data = new HashMap<>(16);
+            this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
         if (list == null) {
             list = new ArrayList<>();
