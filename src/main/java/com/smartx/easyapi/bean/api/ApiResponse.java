@@ -189,13 +189,13 @@ public class ApiResponse implements Serializable {
         return this;
     }
 
-    public ApiResponse addObjectToData(Object obj, boolean withNull) throws Exception {
-        this._addObjectToData(obj, withNull, true);
+    public ApiResponse addObjectToData(Object obj, boolean withNullField) throws Exception {
+        this._addObjectToData(obj, withNullField, true);
         return this;
     }
 
-    public ApiResponse addObjectToData(Object obj, boolean withNull, boolean withName) throws Exception {
-        this._addObjectToData(obj, withNull, withName);
+    public ApiResponse addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
+        this._addObjectToData(obj, withNullField, withName);
         return this;
     }
 
@@ -214,11 +214,11 @@ public class ApiResponse implements Serializable {
         return this;
     }
 
-    private void _addObjectToData(Object obj, boolean withNull, boolean withName) throws Exception {
+    private void _addObjectToData(Object obj, boolean withNullField, boolean withName) throws Exception {
         if (this.data == null) {
             this.data = new HashMap<>(COLLECTION_DEFAULT_SIZE);
         }
-        Map<String, Object> map = new ApiResponseBuilder().map(obj, withNull);
+        Map<String, Object> map = new ApiResponseBuilder().map(obj, withNullField);
         if (withName) {
             this.data.put(obj.getClass().getSimpleName().toLowerCase(), map);
         } else {
