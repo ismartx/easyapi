@@ -92,17 +92,17 @@ public class ApiResponse implements Serializable {
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(Object obj) throws Exception {
-            this.addObjectToData0(null, obj, true, true);
+            this.addObjectToData0(null, obj, false, false);
             return this;
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(String key, Object obj) throws Exception {
-            this.addObjectToData0(key, obj, true, true);
+            this.addObjectToData0(key, obj, false, false);
             return this;
         }
 
         public ApiResponse.ApiResponseBuilder addObjectToData(String key, Object obj, boolean withNullField) throws Exception {
-            this.addObjectToData0(key, obj, withNullField, true);
+            this.addObjectToData0(key, obj, withNullField, false);
             return this;
         }
 
@@ -194,17 +194,17 @@ public class ApiResponse implements Serializable {
     }
 
     public ApiResponse addObjectToData(Object obj) throws Exception {
-        this.addObjectToData0(null, obj, true, true);
+        this.addObjectToData0(null, obj, false, false);
         return this;
     }
 
     public ApiResponse addObjectToData(String key, Object obj) throws Exception {
-        this.addObjectToData0(key, obj, true, true);
+        this.addObjectToData0(key, obj, false, false);
         return this;
     }
 
     public ApiResponse addObjectToData(String key, Object obj, boolean withNullField) throws Exception {
-        this.addObjectToData0(key, obj, withNullField, true);
+        this.addObjectToData0(key, obj, withNullField, false);
         return this;
     }
 
